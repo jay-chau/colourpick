@@ -14,7 +14,8 @@ def processimage(image):
     return img
 
 def findcolour(image, clusters):
-    ##Create KMeans model with desired clusters
+    ##Create KMeans model with desired clusters.
+    ##Number of clusters should be equal to the expected number of colours within the image.
     km = KMeans(n_clusters=clusters)
     model = km.fit(image)
 
@@ -32,11 +33,11 @@ def distance(c1, c2):
     return distance**(1/2)
 
 
-def checkcolour(rgb, comparison=[]):
+def checkcolour(rgb, comparison={}):
     
-    if comparison == []:
+    if comparison == {}:
     ##Define comparison base colours if none is passed.
-    ##Expected benchmark RGB values should be passed for accuracy.
+    ##Expected benchmark RGB values should be passed/tuned to ensure accuracy.
         comparison = {
             "blue": [0,0,225],
             "red": [255,0,0],
