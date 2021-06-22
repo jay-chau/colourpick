@@ -1,5 +1,6 @@
 import cv2
 from sklearn.cluster import KMeans
+import numpy as np
 
 def importimage(filename):
     return cv2.imread(filename)
@@ -19,8 +20,11 @@ def findcolour(image, clusters):
     km = KMeans(n_clusters=clusters)
     model = km.fit(image)
 
-    ##Return labels used to define clusters (RGB value)
-    return model.cluster_centers_
+    ##Calculate count of each label in the immage
+    count = np.bincount(model.labels_)
+
+    ##Return label used to define most dominate cluster (RGB value)
+    return model.cluster_centers_[np.where(count == count.max())[0]][0]
 
 def distance(c1, c2):
 
@@ -49,7 +53,7 @@ def checkcolour(rgb, comparison={}):
             "orange": [255,165,0]
             }
 
-    ##Calculate distance between rgb value and baseline
+    ##Calculate distance between rgb value and baseline. The smaller the value the closer the colours are in RGB space (the more likely they are to be the "same")
     for c in comparison:
         comparison[c] = distance(rgb, comparison[c])
 
