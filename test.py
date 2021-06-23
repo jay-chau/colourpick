@@ -1,3 +1,3 @@
-import colourpick as cp
+import src.colourpick as cp
 
 print(cp.colourpick("green.jpg",2))

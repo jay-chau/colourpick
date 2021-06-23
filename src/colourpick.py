@@ -1,13 +1,13 @@
-import cv2
+from cv2 import imread, cvtColor, COLOR_BGR2RGB
 from sklearn.cluster import KMeans
-import numpy as np
+from numpy import bincount, where
 
 def importimage(filename):
-    return cv2.imread(filename)
+    return imread(filename)
 
 def processimage(image):
     ##Convert image into the RGB space
-    img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    img = cvtColor(image, COLOR_BGR2RGB)
 
     ##Resize into x by 3
     img = img.reshape((img.shape[0] * img.shape[1],3)) 
@@ -21,10 +21,10 @@ def findcolour(image, clusters):
     model = km.fit(image)
 
     ##Calculate count of each label in the immage
-    count = np.bincount(model.labels_)
+    count = bincount(model.labels_)
 
     ##Return label used to define most dominate cluster (RGB value)
-    return model.cluster_centers_[np.where(count == count.max())[0]][0]
+    return model.cluster_centers_[where(count == count.max())[0]][0]
 
 def distance(c1, c2):
 
