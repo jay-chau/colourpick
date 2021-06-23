@@ -37,7 +37,7 @@ def distance(c1, c2):
     return distance**(1/2)
 
 
-def checkcolour(rgb, comparison={}):
+def checkcolour(rgb, comparison):
     
     if comparison == {}:
     ##Define comparison base colours if none is passed.
@@ -58,3 +58,8 @@ def checkcolour(rgb, comparison={}):
         comparison[c] = distance(rgb, comparison[c])
 
     return comparison
+
+def colourpick(filename, clusters, comparison={}):
+    img = processimage(importimage(filename))
+    col = findcolour(img, clusters)
+    return checkcolour(col, comparison)
