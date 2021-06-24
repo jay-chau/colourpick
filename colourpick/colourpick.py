@@ -1,13 +1,13 @@
-from cv2 import imread, cvtColor, COLOR_BGR2RGB
+import cv2
 from sklearn.cluster import KMeans
 from numpy import bincount, where
 
 def importimage(filename):
-    return imread(filename)
+    return cv2.imread(filename)
 
 def processimage(image):
     ##Convert image into the RGB space
-    img = cvtColor(image, COLOR_BGR2RGB)
+    img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
     ##Resize into x by 3
     img = img.reshape((img.shape[0] * img.shape[1],3)) 

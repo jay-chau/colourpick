@@ -1,3 +1,4 @@
 ﻿/.vs
-*.egginfo/
+*.egg-info/
 /dist
+/colourpick/__pycache__

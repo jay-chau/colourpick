@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
-Name: Colourpick
-Version: 1.0.0
+Name: colourpick
+Version: 1.0.1
 Summary: Calculation of the dominant (average) RGB value
 Home-page: https://github.com/jay-chau/colourpick
 Author: Jay Chau

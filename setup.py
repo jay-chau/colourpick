@@ -9,8 +9,8 @@ README = (HERE / "README.md").read_text()
 
 # This call to setup() does all the work
 setup(
-    name="Colourpick",
-    version="1.0.0",
+    name="colourpick",
+    version="1.0.1",
     description="Calculation of the dominant (average) RGB value",
     long_description=README,
     long_description_content_type="text/markdown",
@@ -21,7 +21,7 @@ setup(
     classifiers=[
         "Programming Language :: Python :: 3",
     ],
-    packages=["src/colourpick"],
+    packages=["colourpick"],
     include_package_data=True,
     install_requires=[
         'opencv-python',
