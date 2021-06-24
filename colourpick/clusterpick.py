@@ -62,6 +62,7 @@ def pick(filename, clusters, comparison={}):
     try:
         img = process(filename)
         colour = find(img, clusters)
+        return compare(colour, comparison)
     except:
         print("Error")
-    return compare(colour, comparison)
+    

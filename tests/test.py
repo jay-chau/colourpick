@@ -1,6 +1,4 @@
-import colourpick.colourpick as cp
-import numpy as np
-import cv2
+import colourpick.clusterpick as cp
+import os
 
-image = processimage("green.jpg")
-print(image)
+print(cp.pick(r"{}\tests\green.jpg".format(os.getcwd()),2))
