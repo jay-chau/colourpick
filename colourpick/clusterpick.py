@@ -1,20 +1,19 @@
-import cv2
+from cv2 import imread, cvtColor, COLOR_BGR2RGB
 from sklearn.cluster import KMeans
 from numpy import bincount, where
 
-def importimage(filename):
-    return cv2.imread(filename)
+def process(filename):
+    image = imread(filename)
 
-def processimage(image):
     ##Convert image into the RGB space
-    img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    img = cvtColor(image, COLOR_BGR2RGB)
 
     ##Resize into x by 3
     img = img.reshape((img.shape[0] * img.shape[1],3)) 
 
     return img
 
-def findcolour(image, clusters):
+def find(image, clusters):
     ##Create KMeans model with desired clusters.
     ##Number of clusters should be equal to the expected number of colours within the image.
     km = KMeans(n_clusters=clusters)
@@ -37,7 +36,7 @@ def distance(c1, c2):
     return distance**(1/2)
 
 
-def checkcolour(rgb, comparison):
+def compare(rgb, comparison):
     
     if comparison == {}:
     ##Define comparison base colours if none is passed.
@@ -59,7 +58,10 @@ def checkcolour(rgb, comparison):
 
     return comparison
 
-def colourpick(filename, clusters, comparison={}):
-    img = processimage(importimage(filename))
-    col = findcolour(img, clusters)
-    return checkcolour(col, comparison)
+def pick(filename, clusters, comparison={}):
+    try:
+        img = process(filename)
+        colour = find(img, clusters)
+    except:
+        print("Error")
+    return compare(colour, comparison)
